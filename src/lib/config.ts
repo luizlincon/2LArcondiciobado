@@ -8,3 +8,7 @@ export const config = {
 }
 
 export const isBackendConfigured = () => Boolean(config.supabaseUrl && config.supabaseAnonKey)
+
+/** Modo demonstração: dados ficam só no navegador. Ativo em dev, ou em build com VITE_DEMO_MODE=true, e só sem backend. */
+export const isDemoMode = () =>
+  !isBackendConfigured() && (import.meta.env.DEV || import.meta.env.VITE_DEMO_MODE === 'true')

@@ -1,4 +1,4 @@
-import { config, isBackendConfigured } from '@/lib/config'
+import { config, isBackendConfigured, isDemoMode } from '@/lib/config'
 import type { QuoteFormData } from '@/lib/quoteSchema'
 import { normalizePhone } from '@/lib/phone'
 
@@ -19,6 +19,16 @@ export async function submitQuote(
   photos: File[],
   idempotencyKey: string,
 ): Promise<{ id: string }> {
+  if (isDemoMode()) {
+    const { createPublicQuote } = await import('@/admin/db/repo')
+    const { fileToDataUrl } = await import('@/lib/image')
+    const req = createPublicQuote({
+      name: data.name, phone: normalizePhone(data.whatsapp) ?? data.whatsapp, service: data.service, quantity: data.quantity,
+      location: data.location, notes: data.notes ?? '', preferredDate: data.preferredDate ?? '',
+      preferredPeriod: data.preferredPeriod ?? 'indiferente', photos: await Promise.all(photos.map((p) => fileToDataUrl(p))),
+    })
+    return { id: req.id }
+  }
   if (!isBackendConfigured()) {
     throw new QuoteSubmitError('O envio online ainda não está disponível neste ambiente.', 'not_configured')
   }

@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { CheckCircle2, Loader2, MessageCircle } from 'lucide-react'
+import { isDemoMode } from '@/lib/config'
 import { PERIODS, quoteSchema } from '@/lib/quoteSchema'
 import { formatPhone } from '@/lib/phone'
 import { SERVICES, serviceTitle } from '@/lib/services'
@@ -91,6 +92,11 @@ export default function QuoteForm() {
   const today = new Date().toISOString().slice(0, 10)
   return (
     <form onSubmit={onSubmit} noValidate className="space-y-5 rounded-2xl bg-white p-6 shadow-xl sm:p-8" aria-busy={submitting}>
+      {isDemoMode() && (
+        <p className="rounded-lg bg-amber-50 p-3 text-sm text-amber-900 ring-1 ring-amber-200">
+          <strong>Modo demonstração:</strong> o envio fica salvo apenas neste navegador e aparece em <a className="underline" href="/admin">/admin</a>. Nada é enviado à 2L.
+        </p>
+      )}
       <Field id="name" label="Nome" required error={errors.name}>
         <input id="name" className="field" autoComplete="name" value={v.name} onChange={set('name')} disabled={submitting} {...ariaFor('name')} />
       </Field>
