@@ -1,0 +1,37 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-navy: #082b5c;
+  --color-navy-900: #061f43;
+  --color-electric: #008eea;
+  --color-electric-600: #0077c8;
+  --color-silver: #e7ebf1;
+  --color-mist: #f4f7fb;
+  --color-ink: #0f1b2d;
+  --color-muted: #51607a;
+  --font-display: 'Manrope', system-ui, sans-serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  body { @apply bg-white font-sans text-ink antialiased; }
+  h1, h2, h3, h4 { @apply font-display text-navy; }
+  :focus-visible { outline: 3px solid var(--color-electric); outline-offset: 2px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+@layer components {
+  .btn { @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-lg px-6 py-3 font-display text-sm font-bold tracking-wide transition-colors disabled:cursor-not-allowed disabled:opacity-60; }
+  .btn-primary { @apply bg-electric text-white hover:bg-electric-600; }
+  .btn-outline { @apply border-2 border-navy text-navy hover:bg-navy hover:text-white; }
+  .btn-outline-light { @apply border-2 border-white/70 text-white hover:bg-white hover:text-navy; }
+  .container-x { @apply mx-auto w-full max-w-6xl px-4 sm:px-6; }
+  .section { @apply py-16 sm:py-24; }
+  .eyebrow { @apply mb-3 text-xs font-bold uppercase tracking-[0.18em] text-electric-600; }
+  .field { @apply w-full rounded-lg border border-slate-300 bg-white px-3.5 py-3 text-base text-ink placeholder:text-slate-400 focus:border-electric focus:outline-none focus:ring-2 focus:ring-electric/30; }
+}
