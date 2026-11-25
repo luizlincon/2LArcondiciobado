@@ -30,7 +30,8 @@ Em produção sem backend e sem a variável, o formulário informa que o envio e
 ## Mapa
 Leaflet. Com `VITE_MAPBOX_TOKEN` usa tiles Mapbox; sem token usa OpenStreetMap. Pinos individuais por visita, posicionamento manual, filtros por período e serviço.
 
-- Logo vetorial (SVG) da 2L: a logo atual foi recortada de uma imagem de baixa resolução.
+- Logo premium (sem floco de neve e sem azul elétrico). A landing usa um logotipo tipográfico provisório; a logo antiga (recorte de baixa resolução) permanece só no painel.
+- Confirmar com a empresa: regiões atendidas (`regions`) e os compromissos da Experiência 2L (`commitments`) em `src/content/site.ts`.
 - Fotos reais para antes e depois: `src/content.ts` (`beforeAfter`) e `public/antes-depois/`.
 - Fotografia real para o hero.
 - Domínio, para sitemap, Open Graph e dados estruturados.

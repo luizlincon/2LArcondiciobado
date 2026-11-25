@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 /** MODELO. Deve ser revisado por profissional jurídico antes da publicação (LGPD). */
 export default function Privacy() {
   return (
-    <main className="container-x max-w-3xl py-16">
+    <main className="lux min-h-screen"><div className="container-x max-w-3xl py-16">
       <Link to="/" className="text-sm font-semibold text-electric-600">← Voltar ao site</Link>
       <h1 className="mt-4 text-3xl font-extrabold">Política de Privacidade</h1>
       <div className="mt-6 space-y-4 text-muted">
@@ -12,6 +12,6 @@ export default function Privacy() {
         <p>Os dados ficam armazenados em ambiente com acesso restrito à equipe da 2L. Fotos e endereços não são exibidos publicamente.</p>
         <p>Você pode solicitar acesso, correção ou exclusão dos seus dados a qualquer momento pelo nosso WhatsApp.</p>
       </div>
-    </main>
+    </div></main>
   )
 }

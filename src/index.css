@@ -9,7 +9,12 @@
   --color-mist: #f4f7fb;
   --color-ink: #0f1b2d;
   --color-muted: #51607a;
-  --font-display: 'Manrope', system-ui, sans-serif;
+  --font-display: 'Sora', 'Manrope', system-ui, sans-serif;
+  --color-paper: #f5f2ea;
+  --color-champagne: #b99a6b;
+  --color-champagne-700: #7d6335;
+  --color-slate2: #56636d; /* cinza da marca (#64717A) escurecido para contraste AA em texto */
+  --color-ink-900: #111b25;
   --font-sans: 'Inter', system-ui, sans-serif;
 }
 
@@ -35,3 +40,31 @@
   .eyebrow { @apply mb-3 text-xs font-bold uppercase tracking-[0.18em] text-electric-600; }
   .field { @apply w-full rounded-lg border border-slate-300 bg-white px-3.5 py-3 text-base text-ink placeholder:text-slate-400 focus:border-electric focus:outline-none focus:ring-2 focus:ring-electric/30; }
 }
+
+/* Direção premium da landing: remapeia os tokens para a paleta ink / paper / champagne.
+   Escopo .lux para não alterar o painel administrativo. */
+.lux {
+  --color-navy: #111b25;
+  --color-navy-900: #0b131b;
+  --color-electric: #b99a6b;
+  --color-electric-600: #7d6335;
+  --color-mist: #f5f2ea;
+  --color-silver: #e2dccf;
+  --color-muted: #64717a;
+  --color-ink: #111b25;
+  background: #f5f2ea;
+}
+.lux .btn-primary { color: #111b25; }
+.lux .btn-primary:hover { background: #cdb384; }
+.lux .field { border-color: #cfc8b8; }
+
+@layer components {
+  .lux-eyebrow { @apply mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-champagne-700; }
+  .lux-eyebrow-dark { @apply mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-champagne; }
+  .lux-btn { @apply inline-flex min-h-12 items-center justify-center gap-2.5 rounded-sm bg-champagne px-7 py-3.5 font-display text-sm font-semibold tracking-wide text-ink transition-colors hover:bg-[#cdb384]; }
+  .lux-btn-ghost { @apply inline-flex min-h-12 items-center justify-center gap-2.5 rounded-sm border border-ink/30 px-7 py-3.5 font-display text-sm font-semibold tracking-wide text-ink transition-colors hover:border-ink hover:bg-ink hover:text-paper; }
+  .lux-link { @apply inline-flex items-center gap-2 border-b border-champagne-700/50 pb-0.5 font-display text-sm font-semibold text-ink transition-colors hover:border-ink; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.is-in { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
