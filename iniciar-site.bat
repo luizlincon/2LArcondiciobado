@@ -1,0 +1,9 @@
+@echo off
+cd /d "%~dp0"
+echo Atualizando o projeto...
+git pull
+echo Instalando dependencias...
+call npm install
+echo Abrindo o site em http://localhost:5173 ...
+start "" http://localhost:5173
+call npm run dev
